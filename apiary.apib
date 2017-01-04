@@ -1,7 +1,26 @@
 FORMAT:1A
 
-# Literature
-Literature API is to manage literature in chado database.
+# Chado
+Chado API is to manage data in chado database through HTTP resources. The
+resource data is modeled and managed according to [JSON
+API](http://jsonapi.org).
+
+## Query parameters
+All resources with **GET** requests supports the following query parameters to refine responses...
+
+- **[include](http://jsonapi.org/format/#fetching-includes)**, e.g. `GET
+  /publications/34?include=authors` to include all authors with publication.
+
+- **[sparse fieldsets](http://jsonapi.org/format/#fetching-sparse-fieldsets)**,
+  e.g. `GET /publications/34?fields[publications]=title,abstract` to return only title and abstract fields.
+
+All collection resources with **GET** requests also supports the following query paramaters...
+
+- **[filter](https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#filtering)**
+
+- **[pagination](https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#pagination)**,
+  e.g. `GET /publications?page[number]=2&page[size]=10` to fetch second page of
+  10 publications.
 
 # Group Publication
 Resources related to **publications** in the API.
@@ -58,6 +77,19 @@ Resources related to **publications** in the API.
                 }
             }
 
+
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "resource not found"
+                "detail": "Given id 3435 does not exist"
+              }]
+            }
+
 ### Delete a specific publication [DELETE]
 + Request (application/vnd.api+json)
 
@@ -101,13 +133,7 @@ Resources related to **publications** in the API.
 
 + Response 204
 
-## Publication collection [/publications?page[number]={pagenum}&page[size]={pagesize}]
-+ Parameters
-    + pagenum: `8` (number, optional) - The page number in the collection.  
-        + Default: `1`
-    + pagesize: `20` (number, optional) - The number of entries in that page.  
-        + Default: 10
-
+## Publication collection [/publications]
 
 ###  List of all publications [GET]
 + Request (application/vnd.api+json)
