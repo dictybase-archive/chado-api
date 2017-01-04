@@ -18,13 +18,14 @@ Resources related to **publications** in the API.
 ### Retrieve a specific publication [GET]
 + Request (application/vnd.api+json)
 
-    + Headers 
+    + Headers
+
             Accept: application/vnd.api+json
 
 + Response 200 (application/vnd.api+json)
 
-    +Body  
-            
+    + Body
+
             {
                 "data": {
                     "links": {
@@ -59,9 +60,10 @@ Resources related to **publications** in the API.
 
 ### Delete a specific publication [DELETE]
 + Request (application/vnd.api+json)
-    
-    + Headers  
-        Accept: application/vnd.api+json
+
+    + Headers
+
+            Accept: application/vnd.api+json
 
 + Response 204
 
@@ -69,7 +71,8 @@ Resources related to **publications** in the API.
 ### Update a specific publication [PATCH]
 + Request (application/vnd.api+json)
 
-    + Headers  
+    + Headers
+
             Accept: application/vnd.api+json  
 
     + Body
@@ -109,12 +112,13 @@ Resources related to **publications** in the API.
 ###  List of all publications [GET]
 + Request (application/vnd.api+json)
 
-    + Headers  
+    + Headers
+
             Accept: application/vnd.api+json
 
 + Response 200 (application/vnd.api+json)
 
-    +Body  
+    + Body
 
                 {
                     "data": [
@@ -198,7 +202,8 @@ Resources related to **publications** in the API.
 ### Create a new publication [POST]
 + Request (application/vnd.api+json)
 
-    + Headers  
+    + Headers
+
             Accept: application/vnd.api+json
 
     + Body
@@ -226,7 +231,8 @@ Resources related to **publications** in the API.
 
 + Response 201 (application/vnd.api+json)  
 
-    + Headers  
+    + Headers
+
             Location: /publications/26088819  
 
     + Body  
@@ -265,18 +271,19 @@ of this concept.
 
 ## Author collection [/publications/{publication_id}/authors]
 + Parameters
-    + publication_id: `26099919` (number, required) - The id will be primarily [pubmed identifier](https://en.wikipedia.org/wiki/PubMed#PubMed_identifier). 
+    + publication_id: 26099919 (number, required) - The id will be primarily pubmed identifier. 
 
 
 ### List of authors for a publication [GET]
 + Request (application/vnd.api+json)
 
-    + Headers  
+    + Headers
+
             Accept: application/vnd.api+json
 
 + Response 200 (application/vnd.api+json)
 
-    +Body  
+    + Body  
 
             {
                 "data": [
@@ -327,7 +334,8 @@ of this concept.
 ### Add new author for a publication [POST]
 + Request (application/vnd.api+json)
 
-    + Headers  
+    + Headers
+
             Accept: application/vnd.api+json
 
     + Body
@@ -345,7 +353,8 @@ of this concept.
 
 + Response 201 (application/vnd.api+json)  
 
-    + Headers  
+    + Headers
+
             Location: /authors/58
 
     + Body  
@@ -380,7 +389,8 @@ of this concept.
 ### Update a specific author [PATCH]
 + Request (application/vnd.api+json)
 
-    + Headers  
+    + Headers
+
             Accept: application/vnd.api+json
 
     + Body
@@ -401,7 +411,8 @@ of this concept.
 ### Delete a specific author [DELETE]
 + Request (application/vnd.api+json)
 
-    + Headers  
+    + Headers
+
             Accept: application/vnd.api+json
 
 + Response 204
