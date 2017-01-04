@@ -8,19 +8,17 @@ Resources related to **publications** in the API.
 
 
 ## Publication [/publications/{publication_id}]
-```apib
 + Parameters
     + publication_id: 26099919 (number, required) - The id will be primarily
       [pubmed identifier](https://en.wikipedia.org/wiki/PubMed#PubMed_identifier).
       However for handful of non-published resources, internally generated
       identifiers will be used. 
-```
+
 
 ### Retrieve a specific publication [GET]
-```apib
 + Request (application/vnd.api+json)
 
-    + Headers  
+    + Headers 
             Accept: application/vnd.api+json
 
 + Response 200 (application/vnd.api+json)
@@ -58,20 +56,17 @@ Resources related to **publications** in the API.
                     }
                 }
             }
-```
 
 ### Delete a specific publication [DELETE]
-```apib
 + Request (application/vnd.api+json)
-
+    
     + Headers  
-            Accept: application/vnd.api+json
+        Accept: application/vnd.api+json
 
 + Response 204
-```
+
 
 ### Update a specific publication [PATCH]
-```apib
 + Request (application/vnd.api+json)
 
     + Headers  
@@ -102,19 +97,16 @@ Resources related to **publications** in the API.
             }
 
 + Response 204
-```
 
 ## Publication collection [/publications?page[number]={pagenum}&page[size]={pagesize}]
-```apib
 + Parameters
     + pagenum: `8` (number, optional) - The page number in the collection.  
         + Default: `1`
     + pagesize: `20` (number, optional) - The number of entries in that page.  
         + Default: 10
-```
+
 
 ###  List of all publications [GET]
-```apib
 + Request (application/vnd.api+json)
 
     + Headers  
@@ -202,10 +194,8 @@ Resources related to **publications** in the API.
                     }
                 }
 
-```
 
 ### Create a new publication [POST]
-```apib
 + Request (application/vnd.api+json)
 
     + Headers  
@@ -265,7 +255,6 @@ Resources related to **publications** in the API.
                     }
                 }
             }
-```
 
 # Group Author
 The author resources are dependent of publication and are managed as
@@ -275,13 +264,11 @@ expected [behaviour](/Webservice-specs.md#self-related-and-http-methods) in
 of this concept.
 
 ## Author collection [/publications/{publication_id}/authors]
-```apib
 + Parameters
     + publication_id: `26099919` (number, required) - The id will be primarily [pubmed identifier](https://en.wikipedia.org/wiki/PubMed#PubMed_identifier). 
-```
+
 
 ### List of authors for a publication [GET]
-```apib
 + Request (application/vnd.api+json)
 
     + Headers  
@@ -336,10 +323,8 @@ of this concept.
                     "self": "/publications/383439/authors"
                 }
             }
-```
 
 ### Add new author for a publication [POST]
-```apib
 + Request (application/vnd.api+json)
 
     + Headers  
@@ -385,16 +370,14 @@ of this concept.
                     }
                 }
             }
-```
+
 
 ## Author [/authors/{author_id}]
-```apib
 + Parameters
     + author_id: 20 (number, required) - The author id.
-```
+
 
 ### Update a specific author [PATCH]
-```apib
 + Request (application/vnd.api+json)
 
     + Headers  
@@ -414,14 +397,11 @@ of this concept.
             }
 
 + Response 204
-```
 
 ### Delete a specific author [DELETE]
-```apib
 + Request (application/vnd.api+json)
 
     + Headers  
             Accept: application/vnd.api+json
 
 + Response 204
-```
