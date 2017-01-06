@@ -85,10 +85,25 @@ Resources related to **publications** in the API.
             {
               "errors": [{
                 "status": "404",
-                "title": "resource not found"
-                "detail": "Given id 3435 does not exist"
+                "title": "Resource not found"
+                "detail": "The resource with id 483943 does not exist"
               }]
             }
+
+
++ Response 400 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "400",
+                "source": { "parameter": "include" },
+                "title": "Invalid include query parameter",
+                "detail": "The resource does not have foo relationship for inclusion"
+              }]
+            }
+
 
 ### Delete a specific publication [DELETE]
 + Request (application/vnd.api+json)
@@ -98,6 +113,18 @@ Resources related to **publications** in the API.
             Accept: application/vnd.api+json
 
 + Response 204
+
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "resource not found"
+                "detail": "......."
+              }]
+            }
 
 
 ### Update a specific publication [PATCH]
@@ -132,6 +159,18 @@ Resources related to **publications** in the API.
             }
 
 + Response 204
+
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "resource not found"
+                "detail": "......."
+              }]
+            }
 
 ## Publication collection [/publications]
 
@@ -225,7 +264,27 @@ Resources related to **publications** in the API.
                 }
 
 
++ Response 400 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "400",
+                "source": { "parameter": "include" },
+                "title": "Invalid include query parameter",
+                "detail": "The resource does not have foo relationship for inclusion"
+              }]
+            }
+
+
 ### Create a new publication [POST]
+A new publication resource can be created either by ...  
+- supplying an id: The value should be in `data.attributes.pubid` field.  
+- not supplying an id: In this case one will be created by the server.
+
+The example below represents the first case.
+
 + Request (application/vnd.api+json)
 
     + Headers
@@ -249,6 +308,7 @@ Resources related to **publications** in the API.
                         "issn": "1526-968X",
                         "pub_type": "journal_article",
                         "source": "pubmed",
+                        "pubid": "26088819",
                         "issue": "8",
                         "status": "ppublish"
                     }
@@ -266,7 +326,7 @@ Resources related to **publications** in the API.
             {
                 "data": {
                     "links": {
-                        "self": "/publications/26099919"
+                        "self": "/publications/26088819"
                     },
                     "type": "publications",
                     "id": "26088819",
@@ -286,6 +346,21 @@ Resources related to **publications** in the API.
                         "status": "ppublish"
                     }
                 }
+            }
+
+
++ Response 409 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "409",
+                "source": {"pointer": "/data/attributes/pubid"},
+                "links": {"about": "/publications/26088819"}
+                "title": "Existing resource",
+                "detail": "id 26088819 exist, resource cannot not created",
+              }]
             }
 
 # Group Author
@@ -357,6 +432,19 @@ of this concept.
                 }
             }
 
++ Response 400 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "400",
+                "source": { "parameter": "include" },
+                "title": "Unsupported include query parameter",
+                "detail": "The resource does not support include query parameter"
+              }]
+            }
+
 ### Add new author for a publication [POST]
 + Request (application/vnd.api+json)
 
@@ -412,6 +500,7 @@ of this concept.
     + author_id: 20 (number, required) - The author id.
 
 
+
 ### Update a specific author [PATCH]
 + Request (application/vnd.api+json)
 
@@ -434,6 +523,18 @@ of this concept.
 
 + Response 204
 
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "resource not found"
+                "detail": "......."
+              }]
+            }
+
 ### Delete a specific author [DELETE]
 + Request (application/vnd.api+json)
 
@@ -442,3 +543,16 @@ of this concept.
             Accept: application/vnd.api+json
 
 + Response 204
+
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "resource not found"
+                "detail": "......."
+              }]
+            }
+
