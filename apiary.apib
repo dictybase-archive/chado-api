@@ -358,7 +358,7 @@ The example below represents the first case.
                 "status": "409",
                 "source": {"pointer": "/data/attributes/pubid"},
                 "links": {"about": "/publications/26088819"}
-                "title": "Existing resource",
+                "title": "Resource exists",
                 "detail": "id 26088819 exist, resource cannot not created",
               }]
             }
@@ -479,6 +479,7 @@ of this concept.
                         "self": "/authors/58"
                     }
                     "type": "authors",
+                    "id": "58",
                     "attributes": {
                         "last_name": "Wardroper",
                         "given_names": "A",
@@ -499,7 +500,52 @@ of this concept.
 + Parameters
     + author_id: 20 (number, required) - The author id.
 
+### Retrieve a specific author [GET]
 
++ Request (application/vnd.api+json)
+
+    + Headers
+
+            Accept: application/vnd.api+json
+
+    + Body
+
+            {
+                "data": {
+                    "links": {
+                        "self": "/authors/58"
+                    }
+                    "type": "authors",
+                    "id": "58",
+                    "attributes": {
+                        "last_name": "Wardroper",
+                        "given_names": "A",
+                        "rank": "22"
+                    },
+                    "relationships": {
+                        "publication": {
+                            "links": {
+                                "related": "/authors/58/publication"
+                            }
+                        }
+                    }
+                }
+            }
+
+
++ Response 200 (application/vnd.api+json)
+
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "Resource not found"
+                "detail": "The resource with id 483943 does not exist"
+              }]
+            }
 
 ### Update a specific author [PATCH]
 + Request (application/vnd.api+json)
