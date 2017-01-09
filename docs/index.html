@@ -1,0 +1,2898 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chado</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism-okaidia.min.css" />
+    <style>
+      blockquote {
+        border-left: solid 4px #eee;
+        padding-left: 8px;
+        font-style: italic;
+        margin-left: 0;
+        padding: 8px;
+      }
+
+      .ui.micro.label {
+        font-size: .25rem;
+      }
+
+      .ui.transaction.accordion .title {
+        text-align: center;
+      }
+
+      .ui.transaction.accordion .content {
+        border-top: solid 1px #ddd !important;
+        border-bottom: solid 1px #ddd !important;
+        background-color: rgba(0,0,0,.03);
+        padding: 0.5em 1em !important;
+      }
+
+      .ui.transaction.accordion .content.active {
+        margin-top: 0.5em;
+      }
+
+      .ui.basic.label {
+        text-align: left;
+        overflow: auto;
+      }
+
+      .resource .ui.sub.header {
+        text-transform: none;
+      }
+
+      @media only screen and (min-width: 768px) {
+        .sidewrap {
+          margin-right: 2rem;
+        }
+
+        .sidenav {
+          left: 0;
+          top: 0;
+          width: inherit;
+          position: fixed !important;
+          height: 100% !important;
+          overflow-y: auto !important;
+          padding-left: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ui padded grid">
+      <div class="sidewrap four wide computer five wide tablet sixteen wide mobile column">
+        <div class="sidenav">
+          
+<div class="ui horizontal divider">
+  <a href="#introduction">Introduction</a>
+</div>
+<div class="ui fluid secondary vertical menu">
+  <a class="item" href="#introduction">Chado</a>
+</div>
+
+
+<div class="ui horizontal divider">
+  <a href="#publication">Publication</a>
+</div>
+
+<div class="ui accordion fluid">
+  
+    
+    <div class="title active">
+      <i class="dropdown icon"></i>
+      
+        <strong>Publication</strong>
+      
+    </div>
+    <div class="content active">
+      <div class="ui fluid secondary vertical menu">
+      
+        <a class="item green" href="#publication-publication-retrieve-a-specific-publication">
+          <i class="ui green empty circular label"></i>
+          
+            <span>Retrieve a specific publication</span>
+          
+        </a>
+      
+        <a class="item red" href="#publication-publication-delete-a-specific-publication">
+          <i class="ui red empty circular label"></i>
+          
+            <span>Delete a specific publication</span>
+          
+        </a>
+      
+        <a class="item violet" href="#publication-publication-update-a-specific-publication">
+          <i class="ui violet empty circular label"></i>
+          
+            <span>Update a specific publication</span>
+          
+        </a>
+      
+      </div>
+    </div>
+    
+  
+    
+    <div class="title ">
+      <i class="dropdown icon"></i>
+      
+        <strong>Publication collection</strong>
+      
+    </div>
+    <div class="content ">
+      <div class="ui fluid secondary vertical menu">
+      
+        <a class="item green" href="#publication-publication-collection-list-of-all-publications">
+          <i class="ui green empty circular label"></i>
+          
+            <span>List of all publications</span>
+          
+        </a>
+      
+        <a class="item blue" href="#publication-publication-collection-create-a-new-publication">
+          <i class="ui blue empty circular label"></i>
+          
+            <span>Create a new publication</span>
+          
+        </a>
+      
+      </div>
+    </div>
+    
+  
+</div>
+
+
+<div class="ui horizontal divider">
+  <a href="#author">Author</a>
+</div>
+
+<div class="ui accordion fluid">
+  
+    
+    <div class="title active">
+      <i class="dropdown icon"></i>
+      
+        <strong>Author collection</strong>
+      
+    </div>
+    <div class="content active">
+      <div class="ui fluid secondary vertical menu">
+      
+        <a class="item green" href="#author-author-collection-list-of-authors-for-a-publication">
+          <i class="ui green empty circular label"></i>
+          
+            <span>List of authors for a publication</span>
+          
+        </a>
+      
+        <a class="item blue" href="#author-author-collection-add-new-author-for-a-publication">
+          <i class="ui blue empty circular label"></i>
+          
+            <span>Add new author for a publication</span>
+          
+        </a>
+      
+      </div>
+    </div>
+    
+  
+    
+    <div class="title ">
+      <i class="dropdown icon"></i>
+      
+        <strong>Author</strong>
+      
+    </div>
+    <div class="content ">
+      <div class="ui fluid secondary vertical menu">
+      
+        <a class="item green" href="#author-author-retrieve-a-specific-author">
+          <i class="ui green empty circular label"></i>
+          
+            <span>Retrieve a specific author</span>
+          
+        </a>
+      
+        <a class="item violet" href="#author-author-update-a-specific-author">
+          <i class="ui violet empty circular label"></i>
+          
+            <span>Update a specific author</span>
+          
+        </a>
+      
+        <a class="item red" href="#author-author-delete-a-specific-author">
+          <i class="ui red empty circular label"></i>
+          
+            <span>Delete a specific author</span>
+          
+        </a>
+      
+      </div>
+    </div>
+    
+  
+</div>
+
+
+        </div>
+      </div>
+      <div class="eleven wide computer ten wide tablet sixteen wide mobile column">
+        
+<div class="ui hidden divider header"></div>
+<h1 class="ui huge header" id="introduction">Chado</h1>
+<hr class="ui divider">
+<div class="description">
+  <p>Chado API is to manage data in chado database through HTTP resources. The
+resource data is modeled and managed according to <a href="http://jsonapi.org">JSON
+API</a>.</p>
+
+<h2 id="query-parameters">Query parameters</h2>
+
+<p>All resources with <strong>GET</strong> requests supports the following query parameters to refine responses&hellip;</p>
+
+<ul>
+<li><p><strong><a href="http://jsonapi.org/format/#fetching-includes">include</a></strong>, e.g. <code>GET
+/publications/34?include=authors</code> to include all authors with publication.</p></li>
+
+<li><p><strong><a href="http://jsonapi.org/format/#fetching-sparse-fieldsets">sparse fieldsets</a></strong>,
+e.g. <code>GET /publications/34?fields[publications]=title,abstract</code> to return only title and abstract fields.</p></li>
+</ul>
+
+<p>All collection resources with <strong>GET</strong> requests also supports the following query paramaters&hellip;</p>
+
+<ul>
+<li><p><strong><a href="https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#filtering">filter</a></strong></p></li>
+
+<li><p><strong><a href="https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#pagination">pagination</a></strong>,
+e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch second page of
+10 publications.</p></li>
+</ul>
+
+</div>
+
+        <div class="ui hidden divider"></div>
+        
+
+  <div class="ui horizontal divider" id="publication">
+    Publication
+  </div>
+  <div class="ui header center aligned">
+    <div class="ui sub header">
+      <p>Resources related to <strong>publications</strong> in the API.</p>
+
+    </div>
+  </div>
+  
+    
+      <div class="ui stacked segments">
+        <div class="ui basic segment resource">
+          <div class="ui purple huge ribbon label">
+            Publication
+          </div>
+          <div class="ui header">
+            <div class="ui sub header">
+              
+            </div>
+          </div>
+        </div>
+
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="publication-publication-retrieve-a-specific-publication">
+              Retrieve a specific publication
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications/{publication_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      200
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+    &#34;data&#34;: {
+        &#34;links&#34;: {
+            &#34;self&#34;: &#34;/publications/26099919&#34;
+        },
+        &#34;type&#34;: &#34;publications&#34;,
+        &#34;id&#34;: &#34;26088819&#34;,
+        &#34;attributes&#34;: {
+            &#34;doi&#34;: &#34;10.1002/dvg.22867&#34;,
+            &#34;title&#34;: &#34;dictyBase 2015: Expanding data and annotations in a new software environment&#34;,
+            &#34;abstract&#34;: &#34;dictyBase is the model organism database ......&#34;,
+            &#34;journal&#34;: &#34;Genesis&#34;,
+            &#34;year&#34;: &#34;2015&#34;,
+            &#34;volume&#34;: &#34;12&#34;,
+            &#34;pages&#34;: &#34;765-80&#34;,
+            &#34;month&#34;: &#34;june&#34;,
+            &#34;issn&#34;: &#34;1526-968X&#34;,
+            &#34;pub_type&#34;: &#34;journal_article&#34;,
+            &#34;source&#34;: &#34;pubmed&#34;,
+            &#34;issue&#34;: &#34;8&#34;,
+            &#34;status&#34;: &#34;ppublish&#34;
+        },
+        &#34;relationships&#34;: {
+            &#34;authors&#34;: {
+                &#34;links&#34;: {
+                    &#34;related&#34;: &#34;/publication/26099919/authors&#34;
+                }
+            }
+        }
+    }
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications/{publication_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked orange segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui orange circular label">
+                      404
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;Resource not found&#34;
+    &#34;detail&#34;: &#34;The resource with id 483943 does not exist&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications/{publication_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked  segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui  circular label">
+                      400
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;400&#34;,
+    &#34;source&#34;: { &#34;parameter&#34;: &#34;include&#34; },
+    &#34;title&#34;: &#34;Invalid include query parameter&#34;,
+    &#34;detail&#34;: &#34;The resource does not have foo relationship for inclusion&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="publication-publication-delete-a-specific-publication">
+              Delete a specific publication
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui red large button">
+                  <h3>DELETE</h3>
+                </div>
+                <a class="ui basic fluid red label">
+                  <code>/publications/{publication_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      204
+                    </a>
+                    <code></code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-"></code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui red large button">
+                  <h3>DELETE</h3>
+                </div>
+                <a class="ui basic fluid red label">
+                  <code>/publications/{publication_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked orange segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui orange circular label">
+                      404
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;resource not found&#34;
+    &#34;detail&#34;: &#34;.......&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="publication-publication-update-a-specific-publication">
+              Update a specific publication
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui violet large button">
+                  <h3>PATCH</h3>
+                </div>
+                <a class="ui basic fluid violet label">
+                  <code>/publications/{publication_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;type&#34;: &#34;publications&#34;,
+        &#34;id&#34;: &#34;26088819&#34;,
+        &#34;attributes&#34;: {
+            &#34;doi&#34;: &#34;10.1002/dvg.22867&#34;,
+            &#34;title&#34;: &#34;dictyBase 2015: Expanding data and annotations in a new software environment&#34;,
+            &#34;abstract&#34;: &#34;dictyBase is the model organism database ......&#34;,
+            &#34;journal&#34;: &#34;Genesis&#34;,
+            &#34;year&#34;: &#34;2015&#34;,
+            &#34;volume&#34;: &#34;12&#34;,
+            &#34;pages&#34;: &#34;765-80&#34;,
+            &#34;month&#34;: &#34;june&#34;,
+            &#34;issn&#34;: &#34;1526-968X&#34;,
+            &#34;pub_type&#34;: &#34;journal_article&#34;,
+            &#34;source&#34;: &#34;pubmed&#34;,
+            &#34;issue&#34;: &#34;8&#34;,
+            &#34;status&#34;: &#34;ppublish&#34;
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      204
+                    </a>
+                    <code></code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-"></code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui violet large button">
+                  <h3>PATCH</h3>
+                </div>
+                <a class="ui basic fluid violet label">
+                  <code>/publications/{publication_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;type&#34;: &#34;publications&#34;,
+        &#34;id&#34;: &#34;26088819&#34;,
+        &#34;attributes&#34;: {
+            &#34;doi&#34;: &#34;10.1002/dvg.22867&#34;,
+            &#34;title&#34;: &#34;dictyBase 2015: Expanding data and annotations in a new software environment&#34;,
+            &#34;abstract&#34;: &#34;dictyBase is the model organism database ......&#34;,
+            &#34;journal&#34;: &#34;Genesis&#34;,
+            &#34;year&#34;: &#34;2015&#34;,
+            &#34;volume&#34;: &#34;12&#34;,
+            &#34;pages&#34;: &#34;765-80&#34;,
+            &#34;month&#34;: &#34;june&#34;,
+            &#34;issn&#34;: &#34;1526-968X&#34;,
+            &#34;pub_type&#34;: &#34;journal_article&#34;,
+            &#34;source&#34;: &#34;pubmed&#34;,
+            &#34;issue&#34;: &#34;8&#34;,
+            &#34;status&#34;: &#34;ppublish&#34;
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked orange segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui orange circular label">
+                      404
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;resource not found&#34;
+    &#34;detail&#34;: &#34;.......&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+        </div>
+      <div class="ui hidden divider"></div>
+    
+  
+    
+      <div class="ui stacked segments">
+        <div class="ui basic segment resource">
+          <div class="ui purple huge ribbon label">
+            Publication collection
+          </div>
+          <div class="ui header">
+            <div class="ui sub header">
+              
+            </div>
+          </div>
+        </div>
+
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="publication-publication-collection-list-of-all-publications">
+              List of all publications
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      200
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">    {
+        &#34;data&#34;: [
+            {
+                &#34;links&#34;: {
+                    &#34;self&#34;: &#34;/publications/26088819&#34;
+                }
+                &#34;type&#34;: &#34;publications&#34;,
+                &#34;id&#34;: &#34;26088819&#34;,
+                &#34;attributes&#34;: {
+                    &#34;doi&#34;: &#34;10.1002/dvg.22867&#34;,
+                    &#34;title&#34;: &#34;dictyBase 2015: Expanding data and annotations in a new software environment&#34;,
+                    &#34;abstract&#34;: &#34;dictyBase is the model organism database ......&#34;,
+                    &#34;journal&#34;: &#34;Genesis&#34;,
+                    &#34;year&#34;: &#34;2015&#34;,
+                    &#34;volume&#34;: &#34;12&#34;,
+                    &#34;pages&#34;: &#34;765-80&#34;,
+                    &#34;month&#34;: &#34;june&#34;,
+                    &#34;issn&#34;: &#34;1526-968X&#34;,
+                    &#34;source&#34;: &#34;pubmed&#34;,
+                    &#34;issue&#34;: &#34;8&#34;,
+                    &#34;status&#34;: &#34;ppublish&#34;,
+                    &#34;pub_type&#34;: &#34;journal_article&#34;
+                },
+                &#34;relationships&#34;: {
+                    &#34;authors&#34;: {
+                        &#34;links&#34;: {
+                            &#34;related&#34;: &#34;/publication/26088819/authors&#34;
+                        }
+                    }
+                }
+            }, 
+            {
+                &#34;links&#34;: {
+                    &#34;self&#34;: &#34;/publications/23172289&#34;
+                }
+                &#34;type&#34;: &#34;publications&#34;,
+                &#34;id&#34;: &#34;23172289&#34;,
+                &#34;attributes&#34;: {
+                    &#34;doi&#34;: &#34;10.1093/nar/gks1064&#34;,
+                    &#34;title&#34;: &#34;dictyBase 2013: Integrating multiple dictyostelid species&#34;,
+                    &#34;abstract&#34;: &#34;dictyBase is the model organism database ......&#34;,
+                    &#34;journal&#34;: &#34;Nucleic Acids Research&#34;,
+                    &#34;year&#34;: &#34;2013&#34;,
+                    &#34;volume&#34;: &#34;41&#34;,
+                    &#34;pages&#34;: &#34;676-80&#34;,
+                    &#34;issue&#34;: &#34;18&#34;,
+                    &#34;month&#34;: &#34;jan&#34;,
+                    &#34;issn&#34;: &#34;1362-4962&#34;,
+                    &#34;source&#34;: &#34;pubmed&#34;,
+                    &#34;status&#34;: &#34;epublish&#34;,
+                    &#34;pub_type&#34;: &#34;journal_article&#34;
+                },
+                &#34;relationships&#34;: {
+                    &#34;authors&#34;: {
+                        &#34;links&#34;: {
+                            &#34;related&#34;: &#34;/publication/23172289/authors&#34;
+                        }
+                    }
+                }
+            }
+        ],
+        &#34;links&#34;: {
+            &#34;self&#34;: &#34;/publications?page[number]=6&amp;page[size]=10&#34;,
+            &#34;next&#34;: &#34;/publications?page[number]=7&amp;page[size]=10&#34;,
+            &#34;prev&#34;: &#34;/publications?page[number]=5&amp;page[size]=10&#34;,
+            &#34;last&#34;: &#34;/publications?page[number]=80&amp;page[size]=10&#34;,
+            &#34;first&#34;: &#34;/publications?page[number]=1&amp;page[size]=10&#34;
+        },
+        &#34;meta&#34;: {
+            &#34;pagination&#34;: {
+                &#34;records&#34;: 800,
+                &#34;total&#34;: 80,
+                &#34;size&#34;: 10,
+                &#34;number&#34;: 6
+            }
+        }
+    }
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked  segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui  circular label">
+                      400
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;400&#34;,
+    &#34;source&#34;: { &#34;parameter&#34;: &#34;include&#34; },
+    &#34;title&#34;: &#34;Invalid include query parameter&#34;,
+    &#34;detail&#34;: &#34;The resource does not have foo relationship for inclusion&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="publication-publication-collection-create-a-new-publication">
+              Create a new publication
+            </h3>
+            <div class="description"><p>A new publication resource can be created either by &hellip;</p>
+
+<ul>
+<li><p>supplying an id: The value should be in <code>data.attributes.pubid</code> field.</p></li>
+
+<li><p>not supplying an id: In this case one will be created by the server.</p></li>
+</ul>
+
+<p>The example below represents the first case.</p>
+</div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui blue large button">
+                  <h3>POST</h3>
+                </div>
+                <a class="ui basic fluid blue label">
+                  <code>/publications</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;type&#34;: &#34;publications&#34;,
+        &#34;attributes&#34;: {
+            &#34;doi&#34;: &#34;10.1002/dvg.22867&#34;,
+            &#34;title&#34;: &#34;dictyBase 2015: Expanding data and annotations in a new software environment&#34;,
+            &#34;abstract&#34;: &#34;dictyBase is the model organism database ......&#34;,
+            &#34;journal&#34;: &#34;Genesis&#34;,
+            &#34;year&#34;: &#34;2015&#34;,
+            &#34;volume&#34;: &#34;12&#34;,
+            &#34;pages&#34;: &#34;765-80&#34;,
+            &#34;month&#34;: &#34;june&#34;,
+            &#34;issn&#34;: &#34;1526-968X&#34;,
+            &#34;pub_type&#34;: &#34;journal_article&#34;,
+            &#34;source&#34;: &#34;pubmed&#34;,
+            &#34;pubid&#34;: &#34;26088819&#34;,
+            &#34;issue&#34;: &#34;8&#34;,
+            &#34;status&#34;: &#34;ppublish&#34;
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Location</td>
+      <td><code>/publications/26088819</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      201
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+    &#34;data&#34;: {
+        &#34;links&#34;: {
+            &#34;self&#34;: &#34;/publications/26088819&#34;
+        },
+        &#34;type&#34;: &#34;publications&#34;,
+        &#34;id&#34;: &#34;26088819&#34;,
+        &#34;attributes&#34;: {
+            &#34;doi&#34;: &#34;10.1002/dvg.22867&#34;,
+            &#34;title&#34;: &#34;dictyBase 2015: Expanding data and annotations in a new software environment&#34;,
+            &#34;abstract&#34;: &#34;dictyBase is the model organism database ......&#34;,
+            &#34;journal&#34;: &#34;Genesis&#34;,
+            &#34;year&#34;: &#34;2015&#34;,
+            &#34;volume&#34;: &#34;12&#34;,
+            &#34;pages&#34;: &#34;765-80&#34;,
+            &#34;month&#34;: &#34;june&#34;,
+            &#34;issn&#34;: &#34;1526-968X&#34;,
+            &#34;pub_type&#34;: &#34;journal_article&#34;,
+            &#34;source&#34;: &#34;pubmed&#34;,
+            &#34;issue&#34;: &#34;8&#34;,
+            &#34;status&#34;: &#34;ppublish&#34;
+        }
+    }
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui blue large button">
+                  <h3>POST</h3>
+                </div>
+                <a class="ui basic fluid blue label">
+                  <code>/publications</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;type&#34;: &#34;publications&#34;,
+        &#34;attributes&#34;: {
+            &#34;doi&#34;: &#34;10.1002/dvg.22867&#34;,
+            &#34;title&#34;: &#34;dictyBase 2015: Expanding data and annotations in a new software environment&#34;,
+            &#34;abstract&#34;: &#34;dictyBase is the model organism database ......&#34;,
+            &#34;journal&#34;: &#34;Genesis&#34;,
+            &#34;year&#34;: &#34;2015&#34;,
+            &#34;volume&#34;: &#34;12&#34;,
+            &#34;pages&#34;: &#34;765-80&#34;,
+            &#34;month&#34;: &#34;june&#34;,
+            &#34;issn&#34;: &#34;1526-968X&#34;,
+            &#34;pub_type&#34;: &#34;journal_article&#34;,
+            &#34;source&#34;: &#34;pubmed&#34;,
+            &#34;pubid&#34;: &#34;26088819&#34;,
+            &#34;issue&#34;: &#34;8&#34;,
+            &#34;status&#34;: &#34;ppublish&#34;
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked  segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui  circular label">
+                      409
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;409&#34;,
+    &#34;source&#34;: {&#34;pointer&#34;: &#34;/data/attributes/pubid&#34;},
+    &#34;links&#34;: {&#34;about&#34;: &#34;/publications/26088819&#34;}
+    &#34;title&#34;: &#34;Resource exists&#34;,
+    &#34;detail&#34;: &#34;id 26088819 exist, resource cannot not created&#34;,
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+        </div>
+      <div class="ui hidden divider"></div>
+    
+  
+
+  <div class="ui horizontal divider" id="author">
+    Author
+  </div>
+  <div class="ui header center aligned">
+    <div class="ui sub header">
+      <p>The author resources are dependent of publication and are managed as
+relationship resource. For details look at generic
+<a href="http://jsonapi.org/format/#crud-updating-relationships">specifications</a> and
+expected <a href="/Webservice-specs.md#self-related-and-http-methods">behaviour</a> in
+of this concept.</p>
+
+    </div>
+  </div>
+  
+    
+      <div class="ui stacked segments">
+        <div class="ui basic segment resource">
+          <div class="ui purple huge ribbon label">
+            Author collection
+          </div>
+          <div class="ui header">
+            <div class="ui sub header">
+              
+            </div>
+          </div>
+        </div>
+
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="author-author-collection-list-of-authors-for-a-publication">
+              List of authors for a publication
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications/{publication_id}/authors</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      200
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+    &#34;data&#34;: [
+        {
+            &#34;type&#34;: &#34;authors&#34;,
+            &#34;id&#34;: &#34;483493&#34;,
+            &#34;links&#34;: {
+                &#34;self&#34;: &#34;/authors/483943&#34;
+            },
+            &#34;attributes&#34;: {
+                &#34;last_name&#34;: &#34;Wardroper&#34;,
+                &#34;given_names&#34;: &#34;A&#34;,
+                &#34;rank&#34;: &#34;22&#34;
+            }
+            &#34;relationships&#34;: {
+                &#34;publication&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/authors/483943/publication&#34;
+                    }
+                }
+            }
+        },
+        {
+            &#34;type&#34;: &#34;authors&#34;,
+            &#34;id&#34;: &#34;3479343&#34;,
+            &#34;links&#34;: {
+                &#34;self&#34;: &#34;/authors/3479343&#34;
+            },
+            &#34;attributes&#34;: {
+                &#34;last_name&#34;: &#34;Quail&#34;,
+                &#34;given_names&#34;: &#34;MA&#34;,
+                &#34;rank&#34;: &#34;11&#34;
+            },
+            &#34;relationships&#34;: {
+                &#34;publication&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/authors/3479343/publication&#34;
+                    }
+                }
+            }
+        }
+    ],
+    &#34;links&#34;: {
+        &#34;self&#34;: &#34;/publications/383439/authors&#34;
+    }
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications/{publication_id}/authors</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked  segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui  circular label">
+                      400
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;400&#34;,
+    &#34;source&#34;: { &#34;parameter&#34;: &#34;include&#34; },
+    &#34;title&#34;: &#34;Unsupported include query parameter&#34;,
+    &#34;detail&#34;: &#34;The resource does not support include query parameter&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="author-author-collection-add-new-author-for-a-publication">
+              Add new author for a publication
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui blue large button">
+                  <h3>POST</h3>
+                </div>
+                <a class="ui basic fluid blue label">
+                  <code>/publications/{publication_id}/authors</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;type&#34;: &#34;authors&#34;,
+        &#34;attributes&#34;: {
+            &#34;last_name&#34;: &#34;Wardroper&#34;,
+            &#34;given_names&#34;: &#34;A&#34;,
+            &#34;rank&#34;: &#34;22&#34;
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Location</td>
+      <td><code>/authors/58</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      201
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+    &#34;data&#34;: {
+        &#34;links&#34;: {
+            &#34;self&#34;: &#34;/authors/58&#34;
+        }
+        &#34;type&#34;: &#34;authors&#34;,
+        &#34;id&#34;: &#34;58&#34;,
+        &#34;attributes&#34;: {
+            &#34;last_name&#34;: &#34;Wardroper&#34;,
+            &#34;given_names&#34;: &#34;A&#34;,
+            &#34;rank&#34;: &#34;22&#34;
+        },
+        &#34;relationships&#34;: {
+            &#34;publication&#34;: {
+                &#34;links&#34;: {
+                    &#34;related&#34;: &#34;/authors/58/publication&#34;
+                }
+            }
+        }
+    }
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+        </div>
+      <div class="ui hidden divider"></div>
+    
+  
+    
+      <div class="ui stacked segments">
+        <div class="ui basic segment resource">
+          <div class="ui purple huge ribbon label">
+            Author
+          </div>
+          <div class="ui header">
+            <div class="ui sub header">
+              
+            </div>
+          </div>
+        </div>
+
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="author-author-retrieve-a-specific-author">
+              Retrieve a specific author
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/authors/{author_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;links&#34;: {
+            &#34;self&#34;: &#34;/authors/58&#34;
+        }
+        &#34;type&#34;: &#34;authors&#34;,
+        &#34;id&#34;: &#34;58&#34;,
+        &#34;attributes&#34;: {
+            &#34;last_name&#34;: &#34;Wardroper&#34;,
+            &#34;given_names&#34;: &#34;A&#34;,
+            &#34;rank&#34;: &#34;22&#34;
+        },
+        &#34;relationships&#34;: {
+            &#34;publication&#34;: {
+                &#34;links&#34;: {
+                    &#34;related&#34;: &#34;/authors/58/publication&#34;
+                }
+            }
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      200
+                    </a>
+                    <code></code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-"></code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/authors/{author_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;links&#34;: {
+            &#34;self&#34;: &#34;/authors/58&#34;
+        }
+        &#34;type&#34;: &#34;authors&#34;,
+        &#34;id&#34;: &#34;58&#34;,
+        &#34;attributes&#34;: {
+            &#34;last_name&#34;: &#34;Wardroper&#34;,
+            &#34;given_names&#34;: &#34;A&#34;,
+            &#34;rank&#34;: &#34;22&#34;
+        },
+        &#34;relationships&#34;: {
+            &#34;publication&#34;: {
+                &#34;links&#34;: {
+                    &#34;related&#34;: &#34;/authors/58/publication&#34;
+                }
+            }
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked orange segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui orange circular label">
+                      404
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;Resource not found&#34;
+    &#34;detail&#34;: &#34;The resource with id 483943 does not exist&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="author-author-update-a-specific-author">
+              Update a specific author
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui violet large button">
+                  <h3>PATCH</h3>
+                </div>
+                <a class="ui basic fluid violet label">
+                  <code>/authors/{author_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;type&#34;: &#34;authors&#34;,
+        &#34;attributes&#34;: {
+            &#34;last_name&#34;: &#34;Oreilly&#34;,
+            &#34;given_names&#34;: &#34;John&#34;,
+            &#34;rank&#34;: &#34;2&#34;
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      204
+                    </a>
+                    <code></code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-"></code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui violet large button">
+                  <h3>PATCH</h3>
+                </div>
+                <a class="ui basic fluid violet label">
+                  <code>/authors/{author_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+                <div class="ui stacked segment">
+                  <div class="ui fluid transaction accordion">
+                    <div class="title">
+                      <code>application/vnd.api&#43;json</code>
+                    </div>
+                    <div class="content tabbed">
+                      <div class="ui top attached tabular menu">
+                        <a data-tab="body" class="active item">BODY</a>
+                        <a data-tab="schema" class="item">SCHEMA</a>
+                      </div>
+                      <div class="ui bottom attached active tab segment" data-tab="body">
+                        <pre style="white-space: inherit">
+                          <code class="language-">{
+    &#34;data&#34;: {
+        &#34;type&#34;: &#34;authors&#34;,
+        &#34;attributes&#34;: {
+            &#34;last_name&#34;: &#34;Oreilly&#34;,
+            &#34;given_names&#34;: &#34;John&#34;,
+            &#34;rank&#34;: &#34;2&#34;
+        }
+    }
+}
+</code>
+                        </pre>
+                      </div>
+                      <div class="ui bottom attached tab segment" data-tab="schema">
+                        <pre style="white-space: inherit">
+                          <code class="language-json"></code>
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked orange segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui orange circular label">
+                      404
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;resource not found&#34;
+    &#34;detail&#34;: &#34;.......&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="author-author-delete-a-specific-author">
+              Delete a specific author
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui red large button">
+                  <h3>DELETE</h3>
+                </div>
+                <a class="ui basic fluid red label">
+                  <code>/authors/{author_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      204
+                    </a>
+                    <code></code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-"></code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui red large button">
+                  <h3>DELETE</h3>
+                </div>
+                <a class="ui basic fluid red label">
+                  <code>/authors/{author_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked orange segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui orange circular label">
+                      404
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;resource not found&#34;
+    &#34;detail&#34;: &#34;.......&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+        </div>
+      <div class="ui hidden divider"></div>
+    
+  
+
+
+      </div>
+    </div>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/accordion.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/tab.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/transition.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/components/popup.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/prism.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/components/prism-json.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('.ui.accordion').accordion({ animateChildren: false, duration: 0 });
+        $('.content.tabbed').each(function(index) {
+          $('.ui.tabular .item', $(this)).tab({ context: $(this) });
+        });
+        $('.ui.vertical.menu').on('click', '.item', function() {
+          $('.ui.vertical.menu .item').removeClass('active');
+          $(this).addClass('active');
+        });
+        $('.ui.empty.circular.label').popup();
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
