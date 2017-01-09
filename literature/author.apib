@@ -1,0 +1,239 @@
+# Group Author
+The author resources are dependent of publication and are managed as
+relationship resource. For details look at generic
+[specifications](http://jsonapi.org/format/#crud-updating-relationships) and
+expected [behaviour](/Webservice-specs.md#self-related-and-http-methods) in
+of this concept.
+
+## Author collection [/publications/{publication_id}/authors]
++ Parameters
+    + publication_id: 26099919 (number, required) - The id will be primarily pubmed identifier. 
+
+
+### List of authors for a publication [GET]
++ Request (application/vnd.api+json)
+
+    + Headers
+
+            Accept: application/vnd.api+json
+
++ Response 200 (application/vnd.api+json)
+
+    + Body  
+
+            {
+                "data": [
+                    {
+                        "type": "authors",
+                        "id": "483493",
+                        "links": {
+                            "self": "/authors/483943"
+                        },
+                        "attributes": {
+                            "last_name": "Wardroper",
+                            "given_names": "A",
+                            "rank": "22"
+                        }
+                        "relationships": {
+                            "publication": {
+                                "links": {
+                                    "related": "/authors/483943/publication"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type": "authors",
+                        "id": "3479343",
+                        "links": {
+                            "self": "/authors/3479343"
+                        },
+                        "attributes": {
+                            "last_name": "Quail",
+                            "given_names": "MA",
+                            "rank": "11"
+                        },
+                        "relationships": {
+                            "publication": {
+                                "links": {
+                                    "related": "/authors/3479343/publication"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "links": {
+                    "self": "/publications/383439/authors"
+                }
+            }
+
++ Response 400 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "400",
+                "source": { "parameter": "include" },
+                "title": "Unsupported include query parameter",
+                "detail": "The resource does not support include query parameter"
+              }]
+            }
+
+### Add new author for a publication [POST]
++ Request (application/vnd.api+json)
+
+    + Headers
+
+            Accept: application/vnd.api+json
+
+    + Body
+
+            {
+                "data": {
+                    "type": "authors",
+                    "attributes": {
+                        "last_name": "Wardroper",
+                        "given_names": "A",
+                        "rank": "22"
+                    }
+                }
+            }
+
++ Response 201 (application/vnd.api+json)  
+
+    + Headers
+
+            Location: /authors/58
+
+    + Body  
+
+            {
+                "data": {
+                    "links": {
+                        "self": "/authors/58"
+                    }
+                    "type": "authors",
+                    "id": "58",
+                    "attributes": {
+                        "last_name": "Wardroper",
+                        "given_names": "A",
+                        "rank": "22"
+                    },
+                    "relationships": {
+                        "publication": {
+                            "links": {
+                                "related": "/authors/58/publication"
+                            }
+                        }
+                    }
+                }
+            }
+
+
+## Author [/authors/{author_id}]
++ Parameters
+    + author_id: 20 (number, required) - The author id.
+
+### Retrieve a specific author [GET]
+
++ Request (application/vnd.api+json)
+
+    + Headers
+
+            Accept: application/vnd.api+json
+
+    + Body
+
+            {
+                "data": {
+                    "links": {
+                        "self": "/authors/58"
+                    }
+                    "type": "authors",
+                    "id": "58",
+                    "attributes": {
+                        "last_name": "Wardroper",
+                        "given_names": "A",
+                        "rank": "22"
+                    },
+                    "relationships": {
+                        "publication": {
+                            "links": {
+                                "related": "/authors/58/publication"
+                            }
+                        }
+                    }
+                }
+            }
+
+
++ Response 200 (application/vnd.api+json)
+
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "Resource not found"
+                "detail": "The resource with id 483943 does not exist"
+              }]
+            }
+
+### Update a specific author [PATCH]
++ Request (application/vnd.api+json)
+
+    + Headers
+
+            Accept: application/vnd.api+json
+
+    + Body
+
+            {
+                "data": {
+                    "type": "authors",
+                    "attributes": {
+                        "last_name": "Oreilly",
+                        "given_names": "John",
+                        "rank": "2"
+                    }
+                }
+            }
+
++ Response 204
+
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "resource not found"
+                "detail": "......."
+              }]
+            }
+
+### Delete a specific author [DELETE]
++ Request (application/vnd.api+json)
+
+    + Headers
+
+            Accept: application/vnd.api+json
+
++ Response 204
+
++ Response 404 (application/vnd.api+json)
+
+    + Body
+
+            {
+              "errors": [{
+                "status": "404",
+                "title": "resource not found"
+                "detail": "......."
+              }]
+            }
+

@@ -1,0 +1,26 @@
+FORMAT:1A
+
+# Chado
+Chado API is to manage data in chado database through HTTP resources. The
+resource data is modeled and managed according to [JSON
+API](http://jsonapi.org).
+
+## Query parameters
+All resources with **GET** requests supports the following query parameters to refine responses...
+
+- **[include](http://jsonapi.org/format/#fetching-includes)**, e.g. `GET
+  /publications/34?include=authors` to include all authors with publication.
+
+- **[sparse fieldsets](http://jsonapi.org/format/#fetching-sparse-fieldsets)**,
+  e.g. `GET /publications/34?fields[publications]=title,abstract` to return only title and abstract fields.
+
+All collection resources with **GET** requests also supports the following query paramaters...
+
+- **[filter](https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#filtering)**
+
+- **[pagination](https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#pagination)**,
+  e.g. `GET /publications?page[number]=2&page[size]=10` to fetch second page of
+  10 publications.
+
+<!-- include(literature/publication.apib) -->
+<!-- include(literature/author.apib) -->
