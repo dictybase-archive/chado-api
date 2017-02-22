@@ -218,6 +218,36 @@
 </div>
 
 
+<div class="ui horizontal divider">
+  <a href="#stock">Stock</a>
+</div>
+
+<div class="ui accordion fluid">
+  
+    
+    <div class="title active">
+      <i class="dropdown icon"></i>
+      
+        <strong>Stock collection</strong>
+      
+    </div>
+    <div class="content active">
+      <div class="ui fluid secondary vertical menu">
+      
+        <a class="item green" href="#stock-stock-collection-list-of-all-stocks">
+          <i class="ui green empty circular label"></i>
+          
+            <span>List of all stocks</span>
+          
+        </a>
+      
+      </div>
+    </div>
+    
+  
+</div>
+
+
         </div>
       </div>
       <div class="eleven wide computer ten wide tablet sixteen wide mobile column">
@@ -453,7 +483,16 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
               
 
               <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"></div>
+              <div class="description"><p>Below, a generic JSONAPI error response is given that will be identical for any
+http 400 error with supported query parameter. The following value for title
+field could appear depending on the error.</p>
+
+<ul>
+<li><p>Invalid include query parameter</p></li>
+
+<li><p>Invalid fieldsets query parameter</p></li>
+</ul>
+</div>
               
 <table class="ui celled definition table">
   <thead>
@@ -471,11 +510,11 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
   </tbody>
 </table>
 
-              <div class="ui stacked orange segment">
+              <div class="ui stacked  segment">
                 <div class="ui fluid transaction accordion">
                   <div class="title center aligned">
-                    <a class="ui orange circular label">
-                      404
+                    <a class="ui  circular label">
+                      400
                     </a>
                     <code>application/vnd.api&#43;json</code>
                   </div>
@@ -488,9 +527,111 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
                       <pre style="white-space: inherit">
                         <code class="language-">{
   &#34;errors&#34;: [{
-    &#34;status&#34;: &#34;404&#34;,
-    &#34;title&#34;: &#34;Resource not found&#34;
-    &#34;detail&#34;: &#34;The resource with id 483943 does not exist&#34;
+    &#34;status&#34;: &#34;400&#34;,
+    &#34;source&#34;: { &#34;parameter&#34;: &#34;include or fieldsets or filter&#34; },
+    &#34;title&#34;: &#34;Invalid include/fieldsets/filter query parameter&#34;,
+    &#34;detail&#34;: &#34;....&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications/{publication_id}</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"><p>The following value for title field could appear depending on the error.</p>
+
+<ul>
+<li><p>Database query error</p></li>
+
+<li><p>Json encoding error</p></li>
+
+<li><p>Structure marshalling error</p></li>
+</ul>
+</div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked red segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui red circular label">
+                      500
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;500&#34;,
+    &#34;title&#34;: &#34;Database query error&#34;,
+    &#34;detail&#34;: &#34;....&#34;
   }]
 }
 </code>
@@ -563,11 +704,11 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
   </tbody>
 </table>
 
-              <div class="ui stacked  segment">
+              <div class="ui stacked orange segment">
                 <div class="ui fluid transaction accordion">
                   <div class="title center aligned">
-                    <a class="ui  circular label">
-                      400
+                    <a class="ui orange circular label">
+                      404
                     </a>
                     <code>application/vnd.api&#43;json</code>
                   </div>
@@ -580,10 +721,9 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
                       <pre style="white-space: inherit">
                         <code class="language-">{
   &#34;errors&#34;: [{
-    &#34;status&#34;: &#34;400&#34;,
-    &#34;source&#34;: { &#34;parameter&#34;: &#34;include&#34; },
-    &#34;title&#34;: &#34;Invalid include query parameter&#34;,
-    &#34;detail&#34;: &#34;The resource does not have foo relationship for inclusion&#34;
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;Resource not found&#34;,
+    &#34;detail&#34;: &#34;....&#34;
   }]
 }
 </code>
@@ -1078,7 +1218,21 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
           </div>
           <div class="ui header">
             <div class="ui sub header">
-              
+              <p>It supports the following JSONAPI query parameters</p>
+
+<ul>
+<li><p><strong>include:</strong> All the relationships given below can be included. Those who are not
+mentioned specifically are expected to follow the similar data structures.</p>
+
+<ul>
+<li>authors</li>
+</ul></li>
+
+<li><p><strong>sparse fieldsets:</strong> Attributes of all the relationships are allowed.</p></li>
+
+<li><p><strong>filter:</strong></p></li>
+</ul>
+
             </div>
           </div>
         </div>
@@ -1300,7 +1454,18 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
               
 
               <h4 class="ui horizontal divider">RESPONSE</h4>
-              <div class="description"></div>
+              <div class="description"><p>Below, a generic JSONAPI error response is given that will be identical for any
+http 400 error with supported query parameter. The following value for title
+field could appear depending on the error.</p>
+
+<ul>
+<li><p>Invalid include query parameter</p></li>
+
+<li><p>Invalid fieldsets query parameter</p></li>
+
+<li><p>Invalid filter query parameter</p></li>
+</ul>
+</div>
               
 <table class="ui celled definition table">
   <thead>
@@ -1336,10 +1501,395 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
                         <code class="language-">{
   &#34;errors&#34;: [{
     &#34;status&#34;: &#34;400&#34;,
-    &#34;source&#34;: { &#34;parameter&#34;: &#34;include&#34; },
-    &#34;title&#34;: &#34;Invalid include query parameter&#34;,
-    &#34;detail&#34;: &#34;The resource does not have foo relationship for inclusion&#34;
+    &#34;source&#34;: { &#34;parameter&#34;: &#34;include or fieldsets or filter&#34; },
+    &#34;title&#34;: &#34;Invalid include/fieldsets/filter query parameter&#34;,
+    &#34;detail&#34;: &#34;....&#34;
   }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"><p>The following value for title field could appear depending on the error.</p>
+
+<ul>
+<li><p>Database query error</p></li>
+
+<li><p>Json encoding error</p></li>
+
+<li><p>Structure marshalling error</p></li>
+</ul>
+</div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked red segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui red circular label">
+                      500
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;500&#34;,
+    &#34;title&#34;: &#34;Database query error&#34;,
+    &#34;detail&#34;: &#34;....&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked orange segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui orange circular label">
+                      404
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;Resource not found&#34;,
+    &#34;detail&#34;: &#34;....&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST with include query parameter
+              </h4>
+              <div class="description"><ul>
+<li>Includes <code>phenotypes</code> in query parameter as an example</li>
+</ul>
+</div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/publications</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      200
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+   &#34;data&#34;: [
+        {
+            &#34;type&#34;: &#34;stocks&#34;,
+            &#34;id&#34;: &#34;DBS0236225&#34;,
+            &#34;attributes&#34;: {
+                &#34;name&#34;: &#34;HL27&#34;,
+                &#34;description&#34;: &#34;partial stalky mutant in marked strains&#34;,
+                &#34;category&#34;: &#34;strain&#34;
+            },
+            &#34;relationships&#34;: {
+                &#34;dbxrefs&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/dbxrefs&#34;
+                    }
+                },
+                &#34;phenotypes&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/phenotypes&#34;
+                    },
+                    &#34;data&#34;: [
+                        { &#34;type&#34;: &#34;phenotypes&#34;, &#34;id&#34;: &#34;DSC_PHENO0007441&#34;},
+                        { &#34;type&#34;: &#34;phenotypes&#34;, &#34;id&#34;: &#34;DSC_PHENO0008001&#34;}
+                    ]
+                },
+                &#34;genotypes&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/genotypes&#34;
+                    }
+                },
+                &#34;characteristics&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/characteristics&#34;
+                    }
+                },
+                &#34;inventories&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/inventories&#34;
+                    }
+                },
+                &#34;publications&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/publictions&#34;
+                    }
+                },
+                &#34;orders&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/orders&#34;
+                    }
+                },
+                &#34;parents&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/parents&#34;
+                    }
+                }
+            },
+            &#34;links&#34;: {
+                &#34;self&#34;: &#34;/stocks/DBS0236225&#34;
+            }
+        }
+        {
+           #another stock item
+        }
+    ],
+    &#34;links&#34;: {
+      &#34;self&#34;: &#34;/stocks?page[number]=3&amp;page[size]=3&#34;,
+      &#34;first&#34;: &#34;/stocks?page[number]=1&amp;page[size]=3&#34;,
+      &#34;prev&#34;: &#34;/stocks?page[number]=2&amp;page[size]=3&#34;,
+      &#34;next&#34;: &#34;/stocks?page[number]=4&amp;page[size]=3&#34;,
+      &#34;last&#34;: &#34;/stocks?page[number]=12&amp;page[size]=2&#34;
+    },
+    &#34;meta&#34;: {
+        &#34;pagination&#34;: {
+            &#34;records&#34;: 1000,
+            &#34;total&#34;: 100,
+            &#34;size&#34;: 10,
+            &#34;number&#34;: 3
+        }
+    },
+    &#34;included&#34;: [
+        {
+            &#34;links&#34;: {
+                &#34;self&#34;: &#34;/phenotypes/DSC_PHEN0007441&#34;
+            },
+            &#34;type&#34;: &#34;phenotypes&#34;,
+            &#34;id&#34;: &#34;DSC_PHEN0007441&#34;,
+            &#34;attributes&#34;: {
+                &#34;name&#34;: &#34;D.discoideum unique phenotypes&#34;,
+                &#34;observation&#34;: &#34;abolished aggreation&#34;,
+                &#34;phen_attribute&#34;: &#34;decreased occurence&#34;,
+                &#34;value&#34;: &#34;For some reason very less aggreation&#34;,
+                &#34;cvalue&#34;: &#34;I do not know&#34;,
+                &#34;evidence&#34;: &#34;fruiting body development&#34;
+            },
+            &#34;relationships&#34;: {
+                &#34;properties&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/phenotypes/DSC_PHEN0007441/properties&#34;
+                    }
+                }
+            }
+        } 
+    ]
 }
 </code>
                       </pre>
@@ -1691,8 +2241,9 @@ e.g. <code>GET /publications?page[number]=2&amp;page[size]=10</code> to fetch se
       <p>The author resources are dependent of publication and are managed as
 relationship resource. For details look at generic
 <a href="http://jsonapi.org/format/#crud-updating-relationships">specifications</a> and
-expected <a href="/Webservice-specs.md#self-related-and-http-methods">behaviour</a> in
-of this concept.</p>
+expected
+<a href="https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#self-related-and-http-methods">behaviour</a>
+in of this concept.</p>
 
     </div>
   </div>
@@ -2841,6 +3392,718 @@ of this concept.</p>
     &#34;title&#34;: &#34;resource not found&#34;
     &#34;detail&#34;: &#34;.......&#34;
   }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+        
+        </div>
+      <div class="ui hidden divider"></div>
+    
+  
+
+  <div class="ui horizontal divider" id="stock">
+    Stock
+  </div>
+  <div class="ui header center aligned">
+    <div class="ui sub header">
+      <p>Resources related to <strong>stocks</strong> in the API.</p>
+
+    </div>
+  </div>
+  
+    
+      <div class="ui stacked segments">
+        <div class="ui basic segment resource">
+          <div class="ui purple huge ribbon label">
+            Stock collection
+          </div>
+          <div class="ui header">
+            <div class="ui sub header">
+              <p>It supports the following JSONAPI query parameters</p>
+
+<ul>
+<li><p><strong>include:</strong> All the relationships given below can be included. Those who are not
+mentioned specifically are expected to follow the similar data structures.</p>
+
+<ul>
+<li>dbxrefs</li>
+<li>phenotypes</li>
+<li>genotypes</li>
+<li>characteristics</li>
+<li>inventories</li>
+<li>publications</li>
+<li>orders</li>
+<li>parents</li>
+</ul></li>
+
+<li><p><strong>sparse fieldsets:</strong> Attributes of all the relationships are allowed.</p></li>
+
+<li><p><strong>filter:</strong></p></li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+
+        
+          
+<div class="ui grey horizontal small divider header">
+  <i class="ui grey micro circular label"></i>
+  <i class="ui pink micro circular label"></i>
+  <i class="ui grey micro circular label"></i>
+</div>
+
+          <div class="ui basic segment">
+            <h3 class="ui block center aligned header" id="stock-stock-collection-list-of-all-stocks">
+              List of all stocks
+            </h3>
+            <div class="description"></div>
+
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/stocks</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      200
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+   &#34;data&#34;: [
+        {
+            &#34;type&#34;: &#34;stocks&#34;,
+            &#34;id&#34;: &#34;DBS0236225&#34;,
+            &#34;attributes&#34;: {
+                &#34;name&#34;: &#34;HL27&#34;,
+                &#34;description&#34;: &#34;partial stalky mutant in marked strains&#34;,
+                &#34;category&#34;: &#34;strain&#34;
+            },
+            &#34;relationships&#34;: {
+                &#34;dbxrefs&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/dbxrefs&#34;
+                    }
+                },
+                &#34;phenotypes&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/phenotypes&#34;
+                    }
+                },
+                &#34;genotypes&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/genotypes&#34;
+                    }
+                },
+                &#34;characteristics&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/characteristics&#34;
+                    }
+                },
+                &#34;inventories&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/inventories&#34;
+                    }
+                },
+                &#34;publications&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/publictions&#34;
+                    }
+                },
+                &#34;orders&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/orders&#34;
+                    }
+                },
+                &#34;parents&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/parents&#34;
+                    }
+                }
+            },
+            {
+                #another stock item
+            }
+        ],
+    &#34;links&#34;: {
+      &#34;self&#34;: &#34;/stocks?page[number]=3&amp;page[size]=3&#34;,
+      &#34;first&#34;: &#34;/stocks?page[number]=1&amp;page[size]=3&#34;,
+      &#34;prev&#34;: &#34;/stocks?page[number]=2&amp;page[size]=3&#34;,
+      &#34;next&#34;: &#34;/stocks?page[number]=4&amp;page[size]=3&#34;,
+      &#34;last&#34;: &#34;/stocks?page[number]=12&amp;page[size]=2&#34;
+    },
+    &#34;meta&#34;: {
+        &#34;pagination&#34;: {
+            &#34;records&#34;: 1000,
+            &#34;total&#34;: 100,
+            &#34;size&#34;: 10,
+            &#34;number&#34;: 3
+        }
+    }
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/stocks</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"><p>Below, a generic JSONAPI error response is given that will be identical for any
+http 400 error with supported query parameter. The following value for title
+field could appear depending on the error.</p>
+
+<ul>
+<li><p>Invalid include query parameter</p></li>
+
+<li><p>Invalid fieldsets query parameter</p></li>
+
+<li><p>Invalid filter query parameter</p></li>
+</ul>
+</div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked  segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui  circular label">
+                      400
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;400&#34;,
+    &#34;source&#34;: { &#34;parameter&#34;: &#34;include or fieldsets or filter&#34; },
+    &#34;title&#34;: &#34;Invalid include/fieldsets/filter query parameter&#34;,
+    &#34;detail&#34;: &#34;....&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/stocks</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"><p>The following value for title field could appear depending on the error.</p>
+
+<ul>
+<li><p>Database query error</p></li>
+
+<li><p>Json encoding error</p></li>
+
+<li><p>Structure marshalling error</p></li>
+</ul>
+</div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked red segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui red circular label">
+                      500
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;500&#34;,
+    &#34;title&#34;: &#34;Database query error&#34;,
+    &#34;detail&#34;: &#34;....&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST
+              </h4>
+              <div class="description"></div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/stocks</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked orange segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui orange circular label">
+                      404
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+  &#34;errors&#34;: [{
+    &#34;status&#34;: &#34;404&#34;,
+    &#34;title&#34;: &#34;Resource not found&#34;,
+    &#34;detail&#34;: &#34;....&#34;
+  }]
+}
+</code>
+                      </pre>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="schema">
+                      <pre style="white-space: inherit">
+                        <code class="language-json"></code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+              <h4 class="ui horizontal divider">
+                REQUEST with include query parameter
+              </h4>
+              <div class="description"><ul>
+<li>Includes <code>phenotypes</code> in query parameter as an example</li>
+</ul>
+</div>
+              <div class="fluid ui large labeled button">
+                <div class="ui green large button">
+                  <h3>GET</h3>
+                </div>
+                <a class="ui basic fluid green label">
+                  <code>/stocks</code>
+                </a>
+              </div>
+              
+              
+                
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+    <tr>
+      <td class="four wide">Accept</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              
+              
+
+              <h4 class="ui horizontal divider">RESPONSE</h4>
+              <div class="description"></div>
+              
+<table class="ui celled definition table">
+  <thead>
+    <tr>
+      <th colspan="2">Headers</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <tr>
+      <td class="four wide">Content-Type</td>
+      <td><code>application/vnd.api&#43;json</code></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+              <div class="ui stacked blue segment">
+                <div class="ui fluid transaction accordion">
+                  <div class="title center aligned">
+                    <a class="ui blue circular label">
+                      200
+                    </a>
+                    <code>application/vnd.api&#43;json</code>
+                  </div>
+                  <div class="content tabbed">
+                    <div class="ui top attached tabular menu">
+                      <a data-tab="body" class="active item">BODY</a>
+                      <a data-tab="schema" class="item">SCHEMA</a>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="body">
+                      <pre style="white-space: inherit">
+                        <code class="language-">{
+   &#34;data&#34;: [
+        {
+            &#34;type&#34;: &#34;stocks&#34;,
+            &#34;id&#34;: &#34;DBS0236225&#34;,
+            &#34;attributes&#34;: {
+                &#34;name&#34;: &#34;HL27&#34;,
+                &#34;description&#34;: &#34;partial stalky mutant in marked strains&#34;,
+                &#34;category&#34;: &#34;strain&#34;
+            },
+            &#34;relationships&#34;: {
+                &#34;dbxrefs&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/dbxrefs&#34;
+                    }
+                },
+                &#34;phenotypes&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/phenotypes&#34;
+                    },
+                    &#34;data&#34;: [
+                        { &#34;type&#34;: &#34;phenotypes&#34;, &#34;id&#34;: &#34;DSC_PHENO0007441&#34;},
+                        { &#34;type&#34;: &#34;phenotypes&#34;, &#34;id&#34;: &#34;DSC_PHENO0008001&#34;}
+                    ]
+                },
+                &#34;genotypes&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/genotypes&#34;
+                    }
+                },
+                &#34;characteristics&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/characteristics&#34;
+                    }
+                },
+                &#34;inventories&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/inventories&#34;
+                    }
+                },
+                &#34;publications&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/publictions&#34;
+                    }
+                },
+                &#34;orders&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/orders&#34;
+                    }
+                },
+                &#34;parents&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/stocks/DBS0236225/parents&#34;
+                    }
+                }
+            },
+            &#34;links&#34;: {
+                &#34;self&#34;: &#34;/stocks/DBS0236225&#34;
+            }
+        }
+        {
+           #another stock item
+        }
+    ],
+    &#34;links&#34;: {
+      &#34;self&#34;: &#34;/stocks?page[number]=3&amp;page[size]=3&#34;,
+      &#34;first&#34;: &#34;/stocks?page[number]=1&amp;page[size]=3&#34;,
+      &#34;prev&#34;: &#34;/stocks?page[number]=2&amp;page[size]=3&#34;,
+      &#34;next&#34;: &#34;/stocks?page[number]=4&amp;page[size]=3&#34;,
+      &#34;last&#34;: &#34;/stocks?page[number]=12&amp;page[size]=2&#34;
+    },
+    &#34;meta&#34;: {
+        &#34;pagination&#34;: {
+            &#34;records&#34;: 1000,
+            &#34;total&#34;: 100,
+            &#34;size&#34;: 10,
+            &#34;number&#34;: 3
+        }
+    },
+    &#34;included&#34;: [
+        {
+            &#34;links&#34;: {
+                &#34;self&#34;: &#34;/phenotypes/DSC_PHEN0007441&#34;
+            },
+            &#34;type&#34;: &#34;phenotypes&#34;,
+            &#34;id&#34;: &#34;DSC_PHEN0007441&#34;,
+            &#34;attributes&#34;: {
+                &#34;name&#34;: &#34;D.discoideum unique phenotypes&#34;,
+                &#34;observation&#34;: &#34;abolished aggreation&#34;,
+                &#34;phen_attribute&#34;: &#34;decreased occurence&#34;,
+                &#34;value&#34;: &#34;For some reason very less aggreation&#34;,
+                &#34;cvalue&#34;: &#34;I do not know&#34;,
+                &#34;evidence&#34;: &#34;fruiting body development&#34;
+            },
+            &#34;relationships&#34;: {
+                &#34;properties&#34;: {
+                    &#34;links&#34;: {
+                        &#34;related&#34;: &#34;/phenotypes/DSC_PHEN0007441/properties&#34;
+                    }
+                }
+            }
+        } 
+    ]
 }
 </code>
                       </pre>
