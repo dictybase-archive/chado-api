@@ -178,7 +178,6 @@ It supports the following JSONAPI query parameters
   mentioned specifically are expected to follow the similar data structures.
   + authors
 
-* **sparse fieldsets:** Attributes of all the relationships are allowed.
 * **filter:**
 
 ###  List of all publications [GET]
@@ -254,11 +253,11 @@ It supports the following JSONAPI query parameters
                         }
                     ],
                     "links": {
-                        "self": "/publications?page[number]=6&page[size]=10",
-                        "next": "/publications?page[number]=7&page[size]=10",
-                        "prev": "/publications?page[number]=5&page[size]=10",
-                        "last": "/publications?page[number]=80&page[size]=10",
-                        "first": "/publications?page[number]=1&page[size]=10"
+                        "self": "/publications?pageNum=6&pageSize=10",
+                        "next": "/publications?pageNum=7&pageSize=10",
+                        "prev": "/publications?pageNum]=5&pageSize=10",
+                        "last": "/publications?pageNum=80&pageSize=10",
+                        "first": "/publications?pageNum=1&pageSize=10"
                     },
                     "meta": {
                         "pagination": {
@@ -324,7 +323,7 @@ The following value for title field could appear depending on the error.
 
 + Request with include query parameter (application/vnd.api+json)
     
-   * Includes `phenotypes` in query parameter as an example
+   * Includes `authors` in query parameter as an example
 
     + Headers
 

@@ -1,7 +1,7 @@
 # Group Stock
 Resources related to **stocks** in the API.
 
-## Stock collection [/stocks]
+## Strain collection [/strains]
 It supports the following JSONAPI query parameters
 
 * **include:** All the relationships given below can be included. Those who are not
@@ -19,7 +19,7 @@ It supports the following JSONAPI query parameters
 * **filter:**
 
 
-### List of all stocks [GET]
+### List of all strains [GET]
 + Request (application/vnd.api+json)
 
     + Headers
@@ -33,7 +33,7 @@ It supports the following JSONAPI query parameters
             {
                "data": [
                     {
-                        "type": "stocks",
+                        "type": "strains",
                         "id": "DBS0236225",
                         "attributes": {
                             "name": "HL27",
@@ -43,42 +43,42 @@ It supports the following JSONAPI query parameters
                         "relationships": {
                             "dbxrefs": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/dbxrefs"
+                                    "related": "/strains/DBS0236225/dbxrefs"
                                 }
                             },
                             "phenotypes": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/phenotypes"
+                                    "related": "/strains/DBS0236225/phenotypes"
                                 }
                             },
                             "genotypes": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/genotypes"
+                                    "related": "/strains/DBS0236225/genotypes"
                                 }
                             },
                             "characteristics": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/characteristics"
+                                    "related": "/strains/DBS0236225/characteristics"
                                 }
                             },
                             "inventories": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/inventories"
+                                    "related": "/strains/DBS0236225/inventories"
                                 }
                             },
                             "publications": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/publictions"
+                                    "related": "/strains/DBS0236225/publictions"
                                 }
                             },
                             "orders": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/orders"
+                                    "related": "/strains/DBS0236225/orders"
                                 }
                             },
                             "parents": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/parents"
+                                    "related": "/strains/DBS0236225/parents"
                                 }
                             }
                         },
@@ -87,11 +87,11 @@ It supports the following JSONAPI query parameters
                         }
                     ],
                 "links": {
-                  "self": "/stocks?page[number]=3&page[size]=3",
-                  "first": "/stocks?page[number]=1&page[size]=3",
-                  "prev": "/stocks?page[number]=2&page[size]=3",
-                  "next": "/stocks?page[number]=4&page[size]=3",
-                  "last": "/stocks?page[number]=12&page[size]=2"
+                  "self": "/strains?page[number]=3&page[size]=3",
+                  "first": "/strains?page[number]=1&page[size]=3",
+                  "prev": "/strains?page[number]=2&page[size]=3",
+                  "next": "/strains?page[number]=4&page[size]=3",
+                  "last": "/strains?page[number]=12&page[size]=2"
                 },
                 "meta": {
                     "pagination": {
@@ -170,7 +170,7 @@ The following value for title field could appear depending on the error.
             {
                "data": [
                     {
-                        "type": "stocks",
+                        "type": "strains",
                         "id": "DBS0236225",
                         "attributes": {
                             "name": "HL27",
@@ -180,12 +180,12 @@ The following value for title field could appear depending on the error.
                         "relationships": {
                             "dbxrefs": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/dbxrefs"
+                                    "related": "/strains/DBS0236225/dbxrefs"
                                 }
                             },
                             "phenotypes": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/phenotypes"
+                                    "related": "/strains/DBS0236225/phenotypes"
                                 },
                                 "data": [
                                     { "type": "phenotypes", "id": "DSC_PHENO0007441"},
@@ -194,37 +194,37 @@ The following value for title field could appear depending on the error.
                             },
                             "genotypes": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/genotypes"
+                                    "related": "/strains/DBS0236225/genotypes"
                                 }
                             },
                             "characteristics": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/characteristics"
+                                    "related": "/strains/DBS0236225/characteristics"
                                 }
                             },
                             "inventories": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/inventories"
+                                    "related": "/strains/DBS0236225/inventories"
                                 }
                             },
                             "publications": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/publictions"
+                                    "related": "/strains/DBS0236225/publictions"
                                 }
                             },
                             "orders": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/orders"
+                                    "related": "/strains/DBS0236225/orders"
                                 }
                             },
                             "parents": {
                                 "links": {
-                                    "related": "/stocks/DBS0236225/parents"
+                                    "related": "/strains/DBS0236225/parents"
                                 }
                             }
                         },
                         "links": {
-                            "self": "/stocks/DBS0236225"
+                            "self": "/strains/DBS0236225"
                         }
                     }
                     {
@@ -232,11 +232,11 @@ The following value for title field could appear depending on the error.
                     }
                 ],
                 "links": {
-                  "self": "/stocks?page[number]=3&page[size]=3",
-                  "first": "/stocks?page[number]=1&page[size]=3",
-                  "prev": "/stocks?page[number]=2&page[size]=3",
-                  "next": "/stocks?page[number]=4&page[size]=3",
-                  "last": "/stocks?page[number]=12&page[size]=2"
+                  "self": "/strains?page[number]=3&page[size]=3",
+                  "first": "/strains?page[number]=1&page[size]=3",
+                  "prev": "/strains?page[number]=2&page[size]=3",
+                  "next": "/strains?page[number]=4&page[size]=3",
+                  "last": "/strains?page[number]=12&page[size]=2"
                 },
                 "meta": {
                     "pagination": {

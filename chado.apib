@@ -6,23 +6,34 @@ resource data is modeled and managed according to [JSON
 API](http://jsonapi.org).
 
 ## Query parameters
+## Supported
 All resources with **GET** requests supports the following query parameters to refine responses...
 
-- **[include](http://jsonapi.org/format/#fetching-includes)**, e.g. `GET
+- **[include](http://jsonapi.org/format/#fetching-includes)**: For example, `GET
   /publications/34?include=authors` to include all authors with publication.
+
+
+All collection resources with **GET** requests also supports the following query paramaters...
+
+- **filter**: For example, `GET /publications?filter=actin`. The filtering
+  logic, i.e., the attributes that will used, how the value will be matched
+  will totally depends on the server and will vary for every resource. So,
+  every resource will detail its filtering process. For a general understanding
+  of the strategy look
+  [here](https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#filtering)
+
+
+- **[pagination](https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#pagination)**,
+  e.g. `GET /publications?pageNum=2&pageSize=10` to fetch second page of
+  10 publications.
+
+## Unsupported    
+The following might get supported in the near future,kept here for completeness and to reduce any confusion.
 
 - **[sparse fieldsets](http://jsonapi.org/format/#fetching-sparse-fieldsets)**,
   e.g. `GET /publications/34?fields[publications]=title,abstract` to return only title and abstract fields.
   For a better discussion and clarification of the concept, read
   [here](http://discuss.jsonapi.org/t/clarification-on-the-sparse-fieldset-response/221/4)
-
-All collection resources with **GET** requests also supports the following query paramaters...
-
-- **[filter](https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#filtering)**
-
-- **[pagination](https://github.com/dictyBase/Migration/blob/master/Webservice-specs.md#pagination)**,
-  e.g. `GET /publications?page[number]=2&page[size]=10` to fetch second page of
-  10 publications.
 
 <!-- include(literature/publication.apib) -->
 <!-- include(literature/author.apib) -->
